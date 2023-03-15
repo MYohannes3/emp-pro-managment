@@ -46,13 +46,17 @@ public class MyRunner implements CommandLineRunner {
 
         Manager manager1= managerService.createManager("Chuchu", "Meklit", "Java Developer", "Manager1@gmail.com", "pass1");
         Manager manager2= managerService.createManager("Galila", "Mama", "Python Developer", "Manager2@gmail.com", "pass2");
+        Manager manager3= managerService.createManager("Chuchu", "Meklit", "Java Developer", "Manager3@gmail.com", "pass3");
+        Manager manager4= managerService.createManager("Galila", "Mama", "Python Developer", "Manager4@gmail.com", "pass4");
 
-        Employee employee1 =employeeService.createEmployee("Dagmawi", "T", "Phd", "dagi@gmail.com", "dagi1");
-        Employee employee2 =employeeService.createEmployee("stud2", "st222", "Associate", "stud2@gmail.com", "stud2pass");
-        Employee employee3 =employeeService.createEmployee("Dagmawi", "T", "Bachelor degree", "stud3@gmail.com", "stud3pass");
+        Employee employee1 =employeeService.createEmployee("Dagmawi", "T", "Phd", "emp1@gmail.com", "pass1");
+        Employee employee2 =employeeService.createEmployee("stud2", "st222", "Associate", "emp2@gmail.com", "pass2");
+        Employee employee3 =employeeService.createEmployee("Dagmawi", "T", "Bachelor degree", "emp3@gmail.com", "pass3");
 
         Project project1 = projectService.createProject("EMS","4 weeks","attendance control", manager1.getManagerId());
         Project project2 = projectService.createProject("STMS","3 weeks","let the students enrol to courses", manager2.getManagerId());
+        Project project3 = projectService.createProject("EMS","4 weeks","attendance control", manager3.getManagerId());
+        Project project4 = projectService.createProject("STMS","3 weeks","let the students enrol to courses", manager4.getManagerId());
 
 
         projectService.assignEmployeeToProject(project1.getProjectId(),employee1.getEmployeeId());

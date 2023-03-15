@@ -2,10 +2,21 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymleaf/layout" xmlns:sec="http://thymeleaf.org/extras/spring-security" >
 <head>
     <meta charset="UTF-8">
+    <script src="https://kit.fontawesome.com/6f333ea257.js" crossorigin="anonymous"></script>
    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/5.2.3/css/bootstrap.min.css">
     <script src="/webjars/bootstrap/5.2.3/js/bootstrap.bundle.js"></script>
     <title>Employee Project Management System</title>
-
+<style>
+    footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: dark;
+   color: #333;
+   padding: 20px;
+}
+</style>
 </head>
 <body>
 <div class="container-sm my-2 ">
@@ -65,5 +76,21 @@
 <section layout:fragment="content1">
 
 </section>
+<div class="container my-5">
+    <!-- Footer -->
+    <footer class="m-3 sticky">
+        <div class="social text-center">
+            <a href="https://instagram.com" target="_blank"><i class="fa-brands fa-instagram fs-1 "></i></a>
+            <a href="https://www.twitter.com/" target="_blank"><i class="fa-brands fa-twitter fs-1"></i></a>
+            <a href="https://www.linkedin.com/" target="_blank"><i class="fa-brands fa-linkedin fs-1"></i></a>
+            <a href="https://www.facebook.com/" target="_blank"> <i class="fa-brands fa-facebook fs-1"></i></i></a>
+
+        </div>
+
+        <div class="copyright text-center fs-6">
+            <p> Copyright &copy; 2022 M. Yohannes</p>
+        </div>
+    </footer>
+</div>
 </body>
 </html>

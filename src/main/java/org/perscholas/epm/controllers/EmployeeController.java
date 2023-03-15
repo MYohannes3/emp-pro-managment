@@ -74,7 +74,7 @@ public class EmployeeController {
     public String save(Employee employee, BindingResult bindingResult){
         User user= userService.loadUserByEmail(employee.getUser().getEmail());
         if(user != null)
-            bindingResult.rejectValue("user.email",null, "There is already an account registerd with this email");
+            bindingResult.rejectValue("user.email",null, "There is already an account registered with this email");
         if (bindingResult.hasErrors()) return "createEmployee";
         employeeService.createEmployee(
                 employee.getFirstName(),

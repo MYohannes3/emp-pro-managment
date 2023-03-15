@@ -120,7 +120,7 @@ public class ProjectController {
     }
 
     @GetMapping(value = "/managerProjects")
-    @PreAuthorize("hasAuthority('MANAGER')")
+    @PreAuthorize("hasAnyAuthority('MANAGER', 'ADMIN')")
     public String projectsForCurrentManager(Model model, Principal principal){
         User user= userService.loadUserByEmail(principal.getName());
         Manager manager = managerService.loadManagerById(user.getManager().getManagerId());
@@ -135,6 +135,6 @@ public class ProjectController {
         Manager manager =managerService.loadManagerById(managerId);
         model.addAttribute("listProjects", manager.getProjects());
         model.addAttribute("firstName", manager.getFirstName());
-        return "managerProjects";
+        return "Projects/index";
     }
 }
