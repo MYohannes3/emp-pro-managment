@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymleaf/layout" layout:decorate="Template"
+      xmlns:th="http://www.w3.org/1999/xhtml"><head>
+    <meta charset="UTF-8">
+
+    <title>update Employee</title>
+</head>
+<body>
+<div layout:fragment="content1">
+  <div class="col-md-6 offset-3 mt-3">
+    <form class="form-control" method="post" th:action="@{/employees/update}" th:object="${employee}">
+      <div class="mb-3 mt-3">
+        <label class="form-label">Employee Id:</label>
+        <input type="number" name="employeeId" class="form-control" th:value="${employee.getEmployeeId()}"
+               readonly="readonly">
+      </div>
+      <div class="mb-3 mt-3">
+        <label for="firstName" class="form-label">First Name:</label>
+        <input id="firstName" type="text" name="firstName" class="form-control"
+               th:value="${employee.getFirstName()}">
+      </div>
+      <div class="mb-3 mt-3">
+        <label for="lastName" class="form-label">Last Name:</label>
+        <input id="lastName" type="text" name="lastName" class="form-control"
+               th:value="${employee.getLastName()}">
+      </div>
+      <div class="mb-3 mt-3">
+        <label for="title" class="form-label">Title:</label>
+        <input id="title" type="text" name="title" class="form-control"
+               th:value="${employee.getTitle()}">
+      </div>
+      <div class="mb-3 mt-3" th:each="project:${employee.getProjects()}">
+        <input hidden name="projects" class="form-control"
+               th:value="${employee.projects[projectStat.index].getProjectId()}">
+      </div>
+      <div class="mb-3 mt-3" hidden>
+        <input name="user" class="form-control" th:field="${employee.user}">
+      </div>
+
+      <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymleaf/layout" layout:decorate="Template"
+      xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Projects</title>
+</head>
+<body>
+<div layout:fragment="content1">
+    <div class="container mt-3">
+        <div class="card">
+            <div class="card-header">Projects</div>
+            <div class="card-body">
+                <div class="d-flex justify-content-end mb-3">
+                    <form method="get" th:action="@{index}" class="ms-auto">
+                        <label>keyword</label>
+                        <input type="text" name="keyword" th:value="${keyword}">
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </form>
+                </div>
+                <table class="table">
+                    <thead>
+                    <tr class="text-center">
+                        <th>Project ID</th>
+                        <th>Project Name</th>
+                        <th>Project Duration</th>
+                        <th>Project Description</th>
+                        <th>Manager</th>
+                        <th>Number Of Participants</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="text-center" th:each="project:${listProjects}">
+                        <td th:text="${project.getProjectId()}"></td>
+                        <td th:text="${project.getProjectName()}"></td>
+                        <td th:text="${project.getProjectDuration()}"></td>
+                        <td th:text="${project.getProjectDescription()}"></td>
+                        <td th:text="${project.getManager().getFirstName()}+' '+${project.getManager().getLastName()}"></td>
+                        <td th:text="${project.getEmployees().size()}"></td>
+                        <td>
+                            <a class="btn btn-danger" onclick="return confirm('Are you sure')"
+                               th:href="@{/projects/delete(projectId=${project.getProjectId()}, keyword=${keyword})}">Delete</a>
+                        </td>
+                        <td>
+                            <a class="btn btn-success"
+                               th:href="@{/projects/updateProject(projectId=${project.getProjectId()})}">Update</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--    <div class ="container text-center my-5 ">-->
+<!--        <img src="/images/emp-image.webp"/>-->
+<!--    </div>-->
+
+</div>
+</body>
+</html>

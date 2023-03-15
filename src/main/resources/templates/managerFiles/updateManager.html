@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymleaf/layout" layout:decorate="Template"
+      xmlns:th="http://www.w3.org/1999/xhtml"><head>
+    <meta charset="UTF-8">
+
+  <title>Update Manager</title>
+</head>
+<body>
+<div layout:fragment="content1">
+  <div class="col-md-6 offset-3 mt-3">
+    <form class="form-control" method="post" th:action="@{/managers/update}" th:object="${manager}">
+      <div class="mb-3 mt-3">
+        <label class="form-label">Instructor Id:</label>
+        <input type="number" name="managerId" class="form-control" th:value="${manager.getManagerId()}"
+               readonly="readonly">
+      </div>
+      <div class="mb-3 mt-3">
+        <label for="firstName" class="form-label">First Name:</label>
+        <input id="firstName" type="text" name="firstName" class="form-control"
+               th:value="${manager.getFirstName()}">
+      </div>
+      <div class="mb-3 mt-3">
+        <label for="lastName" class="form-label">Last Name:</label>
+        <input id="lastName" type="text" name="lastName" class="form-control"
+               th:value="${manager.getLastName()}">
+      </div>
+      <div class="mb-3 mt-3">
+        <label for="summary" class="form-label">Summary:</label>
+        <input id="summary" type="text" name="summary" class="form-control"
+               th:value="${manager.getSummary()}">
+      </div>
+      <div class="mb-3 mt-3" th:each="project:${manager.getProjects()}">
+        <input hidden name="projects" class="form-control"
+               th:value="${manager.projects[projectStat.index].getProjectId()}">
+      </div>
+      <div class="mb-3 mt-3" hidden>
+        <input name="user" class="form-control" th:field="${manager.user}">
+      </div>
+      <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+  </div>
+</div>
+</body>
+</html>

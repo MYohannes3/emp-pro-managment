@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymleaf/layout" layout:decorate="Template"
+      xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+
+  <title>Managers</title>
+</head>
+<body>
+<div layout:fragment="content1">
+  <div class="container mt-3">
+    <div class="card">
+      <div class="card-header">List of Managers</div>
+      <div class="card-body">
+        <div class="d-flex justify-content-end mb-3">
+          <form method="get" th:action="@{index}" class="ms-auto">
+            <label>keyword</label>
+            <input type="text" name="keyword" th:value="${keyword}">
+            <button type="submit" class="btn btn-primary">Search</button>
+          </form>
+        </div>
+        <table class="table">
+      <thead>
+      <tr class="text-center">
+        <th>Manager Id</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Summary</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr class="text-center" th:each="manager:${listManagers}">
+        <td th:text="${manager.getManagerId()}"></td>
+        <td th:text="${manager.getFirstName()}"></td>
+        <td th:text="${manager.getLastName()}"></td>
+        <td th:text="${manager.getSummary()}"></td>
+        <td>
+          <a onclick="return confirm('Are you sure')" class="btn btn-danger"
+             th:href="@{/managers/delete(managerId=${manager.getManagerId()}, keyword=${keyword})}">
+            Delete
+          </a>
+        </td>
+        <td>
+          <a class="btn btn-info" th:href="@{/projects/manager(managerId=${manager.getManagerId()})}">
+            Projects
+          </a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+  </div>
+
+</div>
+</body>
+</html>

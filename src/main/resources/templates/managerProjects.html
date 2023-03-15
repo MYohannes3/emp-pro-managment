@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymleaf/layout" layout:decorate="Template"
+      xmlns:th="http://www.w3.org/1999/xhtml"><head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div layout:fragment="content1">
+    <div class="container mt-3">
+    <div class="card">
+        <div class="card-header"><span class="text-success" th:text="${firstName}"></span> These are your projects </div>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                <tr class="text-center">
+                    <th>Project ID</th>
+                    <th>Project Name</th>
+                    <th>Project Duration</th>
+                    <th>Project Description</th>
+                    <th>Manager</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="text-center" th:each="project:${listProjects}">
+                    <td th:text="${project.getProjectId()}"></td>
+                    <td th:text="${project.getProjectName()}"></td>
+                    <td th:text="${project.getProjectDuration()}"></td>
+                    <td th:text="${project.getProjectDescription()}"></td>
+                    <td th:text="${project.getManager().getFirstName()}+' '+${project.getManager().getLastName()}"></td>
+                    <td th:text="${project.getEmployees().size()}"></td>
+                    <td>
+                        <a class="btn btn-success"
+                           th:href="@{/projects/updateProject(projectId=${project.getProjectId()})}">
+                            Update
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </div>
+</div>
+</body>
+</html>

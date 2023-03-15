@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymleaf/layout" layout:decorate="Template"
+      xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="UTF-8">
+  <title>Create Project</title>
+
+</head>
+<body>
+<div layout:fragment="content1">
+<div class="container-sm my-2 ">
+
+  <form class="form-control" method="post" th:action="@{save}" style="width: 800px; margin: auto;">
+    <div class="mb-3 mt-3">
+      <label for="projectName"  class="form-label">Project Name:</label>
+      <input id="projectName" type="text" name="projectName" class="form-control" th:field="${project.projectName}" >
+    </div>
+
+    <div class="mb-3 mt-3">
+      <label for="projectDuration"  class="form-label">Project Duration:</label>
+      <input id="projectDuration" type="text" name="projectDuration" class="form-control" th:field="${project.projectDuration}" >
+    </div>
+
+    <div class="mb-3 mt-3">
+      <label for="projectDescription"  class="form-label">Project Description:</label>
+      <input id="projectDescription" type="text" name="projectDescription" class="form-control" th:field="${project.projectDescription}">
+    </div>
+
+    <div class="mb-3 mt-3">
+      <label class="form-label"> Manager:</label>
+      <select sec:authorize="hasAuthority('ADMIN')" th:field="${project.manager}" name="manager" class="form-select">
+        <option th:each="manager:${listManagers}"
+                th:text="${manager.getFirstName()}+' '+${manager.getFirstName()}"
+                th:value="${manager.getManagerId()}">
+        </option>
+      </select>
+
+      <select sec:authorize="!hasAuthority('ADMIN') && hasAuthority('MANAGER')"
+              th:field="${project.manager}" name="manager" class="form-select">
+        <option selected
+                th:text="${CurrentManager.getFirstName()}+' '+${CurrentManager.getFirstName()}"
+                th:value="${CurrentManager.getManagerId()}">
+        </option>
+      </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create</button>
+  </form>
+</div>
+</div>
+</div>
+</body>
+</html>

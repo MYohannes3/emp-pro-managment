@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymleaf/layout" layout:decorate="Template"
+      xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Create Employee</title>
+
+</head>
+<body>
+<div layout:fragment="content1">
+  <div class="col-md-6 offset-3 mt-3">
+    <form class="form-control" method="post" th:action="@{/employees/save}">
+      <div class="mb-3 mt-3">
+        <label for="firstName" class="form-label">First Name:</label>
+        <input id="firstName" type="text" name="firstName" class="form-control"
+               th:field="${employee.firstName}" required>
+      </div>
+      <div class="mb-3 mt-3">
+        <label for="lastName" class="form-label">Last Name:</label>
+        <input id="lastName" type="text" name="lastName" class="form-control"
+               th:field="${employee.lastName}" required>
+      </div>
+      <div class="mb-3 mt-3">
+        <label for="level" class="form-label">Title:</label>
+        <input id="level" type="text" name="level" class="form-control"
+               th:field="${employee.title}" required>
+      </div>
+      <div class="mb-3 mt-3">
+        <label for="email" class="form-label">Email:</label>
+        <input id="email" type="email" name="email" class="form-control"
+               th:field="${employee.user.email}" required>
+        <span th:errors="${employee.user.email}"></span>
+      </div>
+      <div class="mb-3 mt-3">
+        <label for="password" class="form-label">Password:</label>
+        <input id="password" type="password" name="password" class="form-control"
+               th:field="${employee.user.password}" required>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+  </div>
+</div>
+</body>
+</html>
